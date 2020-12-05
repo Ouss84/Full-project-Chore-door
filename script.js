@@ -1,7 +1,7 @@
-// let botDoorPath = "https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/robot.svg";
-// let beachDoorPath = "https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/beach.svg";
-// let spaceDoorPath = "https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/space.svg";
-// let closedDoorPath ="https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/closed_door.svg";
+let cleaningTask = "https://lakelandcamel.scene7.com/is/image/LakelandCamel/26045_1?$800$";
+let watchMovie = "https://engagingmedia.info/wp-content/uploads/2010/10/4687194723_b183bc7fcf_o-Bartosch-Salmanski-m4tik-CC-BY-NC-2.0.jpg";
+let sleepingTime = "https://singularityhub.com/wp-content/uploads/2019/02/learning-while-sleeping-neuroscience-shutterstock-686222875.png";
+let closedDoor = "https://envato-shoebox-0.imgix.net/fc9f/9721-2a5c-4011-a330-23767fc313f2/000010_01.jpg?auto=compress%2Cformat&fit=max&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark2.png&markalign=center%2Cmiddle&markalpha=18&w=600&s=d3e543749cbbc1ae78377c8276d6c9cf"
 let currentlyPlaying = true;
 
 let doorImage1 = document.getElementById('door1');
@@ -15,7 +15,7 @@ let openDoor2;
 let openDoor3;
 
 const isBot = (door) =>{
-  if (door.src === botDoorPath){
+  if (door.src === cleaningTask){
     return true;
   } else {
     return false;
@@ -23,7 +23,7 @@ const isBot = (door) =>{
 };
 
 const isClicked = (door) =>{
-  if (door.src === closedDoorPath ){ 
+  if (door.src === closedDoor ){ 
     return false;
   } else {
     return true;
@@ -43,17 +43,17 @@ const playDoor = (door) => {
 const randomChoreDoorGenerator = () => {
   let choreDoor = Math.floor(Math.random()* numClosedDoors);
   if (choreDoor === 0){
-    openDoor1 = botDoorPath;
-    openDoor2 = spaceDoorPath;
-    openDoor3 = beachDoorPath;
+    openDoor1 = cleaningTask;
+    openDoor2 = sleepingTime;
+    openDoor3 = watchMovie;
   } else if(choreDoor === 1){
-    openDoor2 = botDoorPath;
-    openDoor1 = beachDoorPath;
-    openDoor3 = spaceDoorPath;
+    openDoor2 = cleaningTask;
+    openDoor1 = watchMovie;
+    openDoor3 = sleepingTime;
   } else {
-    openDoor1 = spaceDoorPath;
-    openDoor2 = beachDoorPath; 
-    openDoor3 = botDoorPath; 
+    openDoor1 = sleepingTime;
+    openDoor2 = watchMovie; 
+    openDoor3 = cleaningTask; 
   }
 };
 
@@ -88,9 +88,9 @@ startButton.onclick = () => {
 };
 
 const startRound = () => {
-  doorImage1.src = closedDoorPath;
-  doorImage2.src = closedDoorPath;
-  doorImage3.src = closedDoorPath;
+  doorImage1.src = closedDoor;
+  doorImage2.src = closedDoor;
+  doorImage3.src = closedDoor;
   numClosedDoors = 3;
   startButton.innerHTML = 'Good Luck!';
   currentlyPlaying = true;
