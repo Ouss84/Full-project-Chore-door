@@ -1,83 +1,83 @@
 let cleaningTask = "https://lakelandcamel.scene7.com/is/image/LakelandCamel/26045_1?$800$";
 let watchMovie = "https://engagingmedia.info/wp-content/uploads/2010/10/4687194723_b183bc7fcf_o-Bartosch-Salmanski-m4tik-CC-BY-NC-2.0.jpg";
 let sleepingTime = "https://singularityhub.com/wp-content/uploads/2019/02/learning-while-sleeping-neuroscience-shutterstock-686222875.png";
-let closedDoor = "https://envato-shoebox-0.imgix.net/fc9f/9721-2a5c-4011-a330-23767fc313f2/000010_01.jpg?auto=compress%2Cformat&fit=max&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark2.png&markalign=center%2Cmiddle&markalpha=18&w=600&s=d3e543749cbbc1ae78377c8276d6c9cf"
+let closedChoice = "https://images-na.ssl-images-amazon.com/images/I/21u5Kw1n+IL._SX331_BO1,204,203,200_.jpg"
 let currentlyPlaying = true;
 
-let doorImage1 = document.getElementById('door1');
-let doorImage2 = document.getElementById('door2');
-let doorImage3 = document.getElementById('door3');
+let guessImage1 = document.getElementById('guess1');
+let guessImage2 = document.getElementById('guess2');
+let guessImage3 = document.getElementById('guess3');
 let startButton = document.getElementById ('start');
 
-let numClosedDoors = 3;
-let openDoor1;
-let openDoor2;
-let openDoor3;
+let numClosedChoices = 3;
+let openChoice1;
+let openChoice2;
+let openChoice3;
 
-const isBot = (door) =>{
-  if (door.src === cleaningTask){
+const isChore = (choice) =>{
+  if (choice.src === cleaningTask){
     return true;
   } else {
     return false;
   }
 };
 
-const isClicked = (door) =>{
-  if (door.src === closedDoor ){ 
+const isClicked = (choice) =>{
+  if (choice.src === closedChoice ){ 
     return false;
   } else {
     return true;
   }
 };
 
-const playDoor = (door) => {
-  numClosedDoors -- ;
-  if (numClosedDoors === 0){
+const playChoice = (choice) => {
+  numClosedChoices -- ;
+  if (numClosedChoices === 0){
     gameOver('win');
-  } else if (isBot(door)){
+  } else if (isChore(choice)){
     gameOver ('lose');
   }
 
 };
 
-const randomChoreDoorGenerator = () => {
-  let choreDoor = Math.floor(Math.random()* numClosedDoors);
-  if (choreDoor === 0){
-    openDoor1 = cleaningTask;
-    openDoor2 = sleepingTime;
-    openDoor3 = watchMovie;
-  } else if(choreDoor === 1){
-    openDoor2 = cleaningTask;
-    openDoor1 = watchMovie;
-    openDoor3 = sleepingTime;
+const randomChoreChoiceGenerator = () => {
+  let choreChoice = Math.floor(Math.random()* numClosedChoices);
+  if (choreChoice === 0){
+    openChoice1 = cleaningTask;
+    openChoice2 = sleepingTime;
+    openChoice3 = watchMovie;
+  } else if(choreChoice === 1){
+    openChoice2 = cleaningTask;
+    openChoice1 = watchMovie;
+    openChoice3 = sleepingTime;
   } else {
-    openDoor1 = sleepingTime;
-    openDoor2 = watchMovie; 
-    openDoor3 = cleaningTask; 
+    openChoice1 = sleepingTime;
+    openChoice2 = watchMovie; 
+    openChoice3 = cleaningTask; 
   }
 };
 
 
-doorImage1.onclick = () => { 
-  if (currentlyPlaying && !isClicked(doorImage1)){
-  doorImage1.src = openDoor1;
-  playDoor(doorImage1);
+guessImage1.onclick = () => { 
+  if (currentlyPlaying && !isClicked(guessImage1)){
+  guessImage1.src = openChoice1;
+  playChoice(guessImage1);
   }
 };
 
 
-doorImage2.onclick =() =>{
-  if (currentlyPlaying && !isClicked(doorImage2)){
-    doorImage2.src = openDoor2;
-    playDoor(doorImage2);
+guessImage2.onclick =() =>{
+  if (currentlyPlaying && !isClicked(guessImage2)){
+    guessImage2.src = openChoice2;
+    playChoice(guessImage2);
   }
 };
 
 
-doorImage3.onclick = () => {
-  if (currentlyPlaying && !isClicked(doorImage3)){
-    doorImage3.src = openDoor3;
-    playDoor(doorImage3);
+guessImage3.onclick = () => {
+  if (currentlyPlaying && !isClicked(guessImage3)){
+    guessImage3.src = openChoice3;
+    playChoice(guessImage3);
   }
 };
 
@@ -88,13 +88,13 @@ startButton.onclick = () => {
 };
 
 const startRound = () => {
-  doorImage1.src = closedDoor;
-  doorImage2.src = closedDoor;
-  doorImage3.src = closedDoor;
-  numClosedDoors = 3;
+  guessImage1.src = closedChoice;
+  guessImage2.src = closedChoice;
+  guessImage3.src = closedChoice;
+  numClosedChoices = 3;
   startButton.innerHTML = 'Good Luck!';
   currentlyPlaying = true;
-  randomChoreDoorGenerator();
+  randomChoreChoiceGenerator();
 };
 
 const gameOver =(status) => {
